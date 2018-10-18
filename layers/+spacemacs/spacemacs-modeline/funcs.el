@@ -52,7 +52,8 @@ Return nil if no scale is defined."
 (defun spacemacs//restore-buffers-powerline ()
   "Restore the powerline in all buffers."
   (dolist (buffer (buffer-list))
-    (spacemacs//restore-powerline buffer)))
+    (unless (string-match-p "\\*which-key\\*" (buffer-name buffer))
+      (spacemacs//restore-powerline buffer))))
 
 (defun spacemacs//prepare-diminish ()
   (when spaceline-minor-modes-p
